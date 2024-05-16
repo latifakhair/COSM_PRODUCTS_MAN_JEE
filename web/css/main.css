@@ -1,9 +1,83 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
-*/
-/* 
-    Created on : 16 mai 2024, 14:52:09
-    Author     : utilisateur
-*/
+/* Resetting default margin and padding */
+body, h2, form, section {
+    margin: 0;
+    padding: 0;
+     color: black;
+  font-family: sans-serif;
+  font-weight: bold;
+  background-color: #ff6699;
+background-image: radial-gradient(#ff6699 2px, #2d2d31 2px);
+background-size: 40px 40px;
 
+    
+}
+
+/* Basic styling for the body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+/* Centering the login form */
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Styling the sign-in box */
+.signin {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adding box shadow for weight */
+    padding: 50px;
+}
+
+/* Styling the sign-in form */
+.form {
+    text-align: center;
+}
+
+/* Styling input boxes */
+.inputBox {
+    margin-bottom: 20px;
+}
+
+/* Styling labels */
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+/* Styling input fields */
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Styling login button */
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #ff6699;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #ccc;
+}
+p{
+    color:red;
+    font-family:sans-serif;
+    font-style: italic;
+    font-size: 10px;
+}
