@@ -23,7 +23,6 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "UserServlet", urlPatterns = {"/UserServlet"})
 public class UserServlet extends HttpServlet {
 
-   
     private static final long serialVersionUID = 1L;
     private UserDAO userDAO;
 
@@ -41,6 +40,42 @@ public class UserServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String action = request.getParameter("action");
+        if (action != null && action.equals("register")) {
+            // Handle user registration
+            registerUser(request, response);
+        } else {
+            // Handle user login
+            loginUser(request, response);
+        }
+    }
+
+    private void registerUser(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String email = request.getParameter("email");
+
+        // Check if any of the input fields are empty
+        if (username.isEmpty() || password.isEmpty() || email.isEmpty()) {
+            request.setAttribute("errorMessage", "Please enter all required information."); // Set error message
+            request.getRequestDispatcher("/register.jsp").forward(request, response); // Forward to registration page with error message
+            return; // Exit method
+        }
+        User newUser = new User(username, password, email);
+
+        if (userDAO.registerUser(newUser)) {
+            // Registration successful
+            response.sendRedirect("index.jsp"); // Redirect to login page
+        } else {
+            // Registration failed
+            request.setAttribute("errorMessage", "Failed to register user."); // Set error message
+            request.getRequestDispatcher("/register.jsp").forward(request, response); // Forward to registration page with error message
+        }
+    }
+
+    private void loginUser(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
@@ -50,10 +85,10 @@ public class UserServlet extends HttpServlet {
             // User authentication successful
             response.sendRedirect("DashboardServlet"); // Redirect to welcome page for user
         } else {
-             // User authentication failed
+            // User authentication failed
             request.setAttribute("errorMessage", "Invalid username or password."); // Set error message
             request.getRequestDispatcher("/index.jsp").forward(request, response); // Forward to login page with error message
-                 
+
         }
     }
 
