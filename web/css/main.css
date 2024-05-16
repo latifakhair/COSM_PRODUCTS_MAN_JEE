@@ -1,11 +1,25 @@
 /* Resetting default margin and padding */
-body, h2, form, section {
+body, h2, form {
     margin: 0;
     padding: 0;
      color: black;
   font-family: sans-serif;
   font-weight: bold;
  
+}
+div .signin{
+background: rgb(255, 213, 226);
+   
+           
+}
+
+
+.divider:after,
+.divider:before {
+content: "";
+flex: 1;
+height: 1px;
+background: #eee;
 }
 
 /* Basic styling for the body */
@@ -37,7 +51,9 @@ form {
 
 /* Styling input boxes */
 .inputBox {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    height: 70px;
+    
 }
 
 /* Styling labels */
@@ -51,7 +67,6 @@ label {
 input[type="text"],
 input[type="password"] {
     width: 100%;
-    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }

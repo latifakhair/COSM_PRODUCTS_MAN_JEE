@@ -1,16 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700');
 
 body {
-  background-color: black;
+
     padding: 24px;
     font-family: 'Source Sans Pro', sans-serif;
     margin: 0;
     ustify-content: center;
-     align-items: center;
+    align-items: center;
     height: 100vh;
     background-size: 40px 40px;
-    
+
 }
+
+
 
 
 
@@ -97,7 +99,7 @@ table {
     content: '(asc)';
 }
 input[type="submit"], input[type="button"], button {
-    background-color: #ff6699;
+ background-color: #ff6699;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -125,25 +127,25 @@ h2 {
     margin-bottom: 10px;
 }
 thead{
-	text-align: center;
-	font-size: 25px;
-	color: #000;
-	margin-top: 20px;
+    text-align: center;
+    font-size: 25px;
+    color: #000;
+    margin-top: 20px;
 }
 
 nav {
-    background-color: #ff6699; /* Couleur de fond de la barre de navigation */
+
     margin-bottom: 20px;
 }
 nav   a{
-float: left;    /* effet flottant */
-text-decoration: none; /* pas d'héritage avec effet souligné */
-color: #ff6699; /* couleur du texte */
-height: 36px; /* hauteur */
-line-height: 33px;  /* interligne */
-padding: 0 10px; /* marges intérieur */
-font-family: sans-serif; /* police d'écriture */
-font-size: 13px; /* taille du texte */
+    float: left;    /* effet flottant */
+    text-decoration: none; /* pas d'héritage avec effet souligné */
+
+    height: 36px; /* hauteur */
+    line-height: 33px;  /* interligne */
+    padding: 0 10px; /* marges intérieur */
+    font-family: sans-serif; /* police d'écriture */
+    font-size: 13px; /* taille du texte */
 
 }
 
@@ -159,7 +161,7 @@ nav ul {
 nav ul li {
     display: inline-block;
     margin-right: 20px; /* Espace entre les éléments de la barre de navigation */
-    
+
 }
 
 nav ul li:last-child {
@@ -168,9 +170,9 @@ nav ul li:last-child {
 nav ul li a.logout {
     position: absolute;
     right: 5%;
-    color:white;
-    
-   
+    color:black;
+
+
 }
 
 
@@ -180,15 +182,13 @@ nav ul li a {
     font-weight: bold;
     padding: 10px 20px;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
+    transition:  0.3s ease;
 }
 
-nav ul li a:hover {
-    background-color: #ff6699;
-}
+
 
 nav ul li a.logout {
-     margin-left: auto;  /* Place l'élément à droite */
+    margin-left: auto;  /* Place l'élément à droite */
 }
 .panel-container {
     display: flex;
@@ -208,28 +208,35 @@ nav ul li a.logout {
 }
 
 .panel-header {
-    background-color: #f0f0f0;
+    background-color: #ff6699;
+
     padding: 10px;
     border-bottom: 1px solid #ccc;
 }
+nav ul li:active {
+    background-color: #ff6699; /* Change this to the desired active color */
+    color: #ff6699; /* Change this to the desired text color */
 
+}
+nav ul li.active a {
+    font-size: 70px; /* Adjust the font size as needed */
+    /* You can also add other styles to adjust the size of the active nav item */
+}
 .panel-body {
     padding: 10px;
+
 }
 
-label{
-     color: white;
-     
-}
-.panel-body{
-      color: white;
+
+div container-fluid{
+    background-color: #ff6699; /* Color of the bars */
 }
 .chart {
     display: flex;
     flex-direction: row;
     align-items: flex-end;
     height: 250px; /* Adjust height as needed */
-    color: whitesmoke;
+
 }
 
 .y-axis {
@@ -254,12 +261,50 @@ label{
 .quantity-label {
     margin-top: 5px; /* Ajustez l'espacement entre la barre et l'étiquette de quantité */
     font-size: 12px; /* Ajustez la taille de police au besoin */
-    color: white;
+
 }
 .title {
     text-align: center;
     margin-top: 20px; /* Adjust as needed */
     margin-bottom: 10px; /* Adjust as needed */
     font-style: italic;
-    color: white;
+
 }
+/* Custom CSS for styling the action column */
+.action-column form {
+    margin-bottom: 10px; /* Add space between action forms */
+}
+
+.action-column input[type="submit"] {
+    background-color: #ff6699; /* Set background color of submit buttons */
+    color: #fff; /* Set text color of submit buttons */
+    border: none; /* Remove border */
+    padding: 5px 10px; /* Add padding */
+    border-radius: 5px; /* Add border radius */
+    cursor: pointer; /* Change cursor on hover */
+}
+
+.action-column input[type="submit"]:hover {
+    background-color: #c82333; /* Change background color on hover */
+}
+.custom-form {
+    display: grid;
+    grid-template-columns: auto 1fr; /* Use grid layout with auto column for labels and 1fr (flexible width) column for inputs */
+    gap: 10px; /* Add gap between grid items */
+}
+
+.form-group {
+    display: flex;
+    align-items: center; /* Align items vertically in the center */
+}
+
+.form-group label {
+    min-width: 120px; /* Set minimum width for labels */
+    margin-right: 10px; /* Add space between label and input */
+}
+.custom-form {
+    display: grid;
+    grid-template-columns: auto 1fr; /* Use grid layout with auto column for labels and 1fr (flexible width) column for inputs */
+    gap: 10px; /* Add gap between grid items */
+}
+

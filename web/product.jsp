@@ -3,26 +3,15 @@
     Created on : 14 mai 2024, 16:50:39
     Author     : utilisateur
 --%>
-<!-- Add a message div to display success messages -->
-<div id="message" style="display:none;"></div>
 
-<!-- Add JavaScript function to show messages -->
-<script>
-    function showMessage(message) {
-        var messageDiv = document.getElementById("message");
-        messageDiv.innerHTML = message;
-        messageDiv.style.display = "block";
-        setTimeout(function () {
-            messageDiv.style.display = "none";
-        }, 3000); // Hide the message after 3 seconds
-    }
-</script>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
         <link href="css/category.css" rel="stylesheet" type="text/css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
         <title>Product Management</title>
         <script>
             function confirmLogout() {
@@ -33,21 +22,24 @@
         </script>
     </head>
     <body>
-        <nav>
-            <ul>
-                <li><a href="DashboardServlet">Dashbard</a></li>
-                <li><a href="CategoryServlet">Categories</a></li>
-                <li><a href="ProductServlet">Products</a></li>
-                <li><a class="logout" href="LogoutServlet" onclick="confirmLogout()">Log out</a></li>
-            </ul>
+        <nav data-mdb-navbar-init class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <nav aria-label="breadcrumb">
+                    <ul>
+                        <li><a href="DashboardServlet">Dashbard</a></li>
+                        <li><a href="CategoryServlet">Categories</a></li>
+                        <li><a href="ProductServlet">Products</a></li>
+                        <li><a class="logout" href="LogoutServlet" onclick="confirmLogout()">Log out</a></li>
+                    </ul>
+                </nav>
+            </div>
+
         </nav>
         <div class="container">
-            <!-- Add a message div to display success messages -->
-            <div id="message" style="display:none;"></div>
             <div class="form-row">
                 <div class="form-column">
                     <h3 class="title" style="font-style: italic;">Add New Product</h3>
-                    <form action="ProductServlet" method="post">
+                    <form action="ProductServlet" method="post"  class="custom-form">
                         <input type="hidden" name="action" value="add">
                         <label for="productName">Product Name:</label>
                         <input type="text" name="productName" id="productName" required>
@@ -78,8 +70,8 @@
                 </form>
             </div>
             <div>
-                <table border="1" class="table table-bordered">
-                    <thead>
+                <table border="1" border="1" class="table table-striped">
+                    <thead class="table table-bordered table-dark">
                         <tr>
                             <th>Product Code</th>
                             <th>Product Name</th>
@@ -99,26 +91,38 @@
                                 <td>${product.date}</td>
                                 <td>${product.price}</td>
                                 <td>${categoryMap[product.category]}</td> <!-- Utiliser la map pour afficher le nom de la catégorie -->
-                                <td>
-                                    <form action="ProductServlet" method="post">
+                                <td class="action-column"> <!-- Add a class to style the action column -->
+                                    <form action="ProductServlet" method="post" class="custom-form">
                                         <input type="hidden" name="action" value="update">
                                         <input type="hidden" name="itCode" value="${product.itCode}">
-                                        <label for="itName${product.itCode}">Product Name:</label>
-                                        <input type="text" name="itName${product.itCode}" value="${product.itName}" required>
-                                        <label for="quantity${product.itCode}">Quantity:</label>
-                                        <input type="number" name="quantity${product.itCode}" value="${product.quantity}" required>
-                                        <label for="date${product.itCode}">Date:</label>
-                                        <input type="date" name="date${product.itCode}" value="${product.date}" required>
-                                        <label for="price${product.itCode}">Price:</label>
-                                        <input type="number" name="price${product.itCode}" value="${product.price}" required>
-                                        <label for="category${product.itCode}">Category:</label>
-                                        <select name="category${product.itCode}" id="category${product.itCode}">
-                                            <!-- Populate options with categories -->
-                                            <c:forEach var="category" items="${categoryMap}">
-                                                <option value="${category.key}" ${category.key == product.category ? 'selected' : ''}>${category.value}</option>
-                                            </c:forEach>
-                                        </select>
-                                        <br><input type="submit" value="Update ">
+                                        <div class="form-group">
+                                            <label for="itName${product.itCode}">Product Name:</label>
+                                            <input type="text" name="itName${product.itCode}" value="${product.itName}" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="quantity${product.itCode}">Quantity:</label>
+                                            <input type="number" name="quantity${product.itCode}" value="${product.quantity}" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="date${product.itCode}">Date:</label>
+                                            <input type="date" name="date${product.itCode}" value="${product.date}" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="price${product.itCode}">Price:</label>
+                                            <input type="number" name="price${product.itCode}" value="${product.price}" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="category${product.itCode}">Category:</label>
+                                            <select name="category${product.itCode}" id="category${product.itCode}">
+                                                <!-- Populate options with categories -->
+                                                <c:forEach var="category" items="${categoryMap}">
+                                                    <option value="${category.key}" ${category.key == product.category ? 'selected' : ''}>${category.value}</option>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="submit" value="Update ">
+                                        </div>
                                     </form>
                                     <!-- Delete button -->
                                     <form action="ProductServlet" method="post" onsubmit="return confirm('Are you sure you want to delete this product?');">
@@ -131,20 +135,10 @@
                         </c:forEach>
                     </tbody>
                 </table>
+
             </div>
         </div>
-
-        <%-- JSP code to check if success attribute is set and display success message --%>
-        <%
-            String successMessage = (String) request.getAttribute("success");
-            if (successMessage != null) {
-        %>
-        <script>
-            alert("<%= successMessage%>");
-        </script>
-        <%
-            }
-        %>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
     </body>
 </html>

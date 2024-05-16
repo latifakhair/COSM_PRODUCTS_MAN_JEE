@@ -1,23 +1,11 @@
-<!-- Add a message div to display success messages -->
-<div id="message" style="display:none;"></div>
-
-<!-- Add JavaScript function to show messages -->
-<script>
-    function showMessage(message) {
-        var messageDiv = document.getElementById("message");
-        messageDiv.innerHTML = message;
-        messageDiv.style.display = "block";
-        setTimeout(function () {
-            messageDiv.style.display = "none";
-        }, 3000); // Hide the message after 3 seconds
-    }
-</script>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
         <link href="css/category.css" rel="stylesheet" type="text/css"/>
+                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
         <title>Category</title>
         <script>
             function confirmLogout() {
@@ -28,17 +16,20 @@
         </script>
     </head>
     <body>
-        <nav>
-            <ul>
-                <li><a href="DashboardServlet">Dashbard</a></li>
-                <li><a href="CategoryServlet">Categories</a></li>
-                <li><a href="ProductServlet">Products</a></li>
-                <li><a class="logout" href="LogoutServlet" onclick="confirmLogout()">Log out</a></li>
-            </ul>
+         <nav data-mdb-navbar-init class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <nav aria-label="breadcrumb">
+                    <ul>
+                        <li><a href="DashboardServlet">Dashbard</a></li>
+                        <li><a href="CategoryServlet">Categories</a></li>
+                        <li><a href="ProductServlet">Products</a></li>
+                        <li><a class="logout" href="LogoutServlet" onclick="confirmLogout()">Log out</a></li>
+                    </ul>
+                </nav>
+            </div>
+
         </nav>
         <div class="container">
-            <!-- Add a message div to display success messages -->
-            <div id="message" style="display:none;"></div>
             <div class="form-row">
                 <div class="form-column">
                     <h5> </h5>
@@ -64,12 +55,12 @@
 
             <div>
                 <tr></tr>
-                <table border="1" class="table table-bordered">
-                    <thead>
+                <table border="1" class="table table-striped">
+                    <thead class="table table-bordered table-dark">
                         <tr>
-                            <th>Code de la catégorie</th>
-                            <th>Nom de la catégorie</th>
-                            <th>Action</th> <!-- Ajouter une nouvelle colonne pour les actions -->
+                            <th  scope="col">Code de la catégorie</th>
+                            <th  scope="col">Nom de la catégorie</th>
+                            <th  scope="col">Action</th> <!-- Ajouter une nouvelle colonne pour les actions -->
                         </tr>
                     </thead>
                     <tbody>
@@ -99,16 +90,7 @@
                     </tbody>
                 </table>
             </div>
-            <%-- JSP code to check if success attribute is set and display success message --%>
-            <%
-                String successMessage = (String) request.getAttribute("success");
-                if (successMessage != null) {
-            %>
-            <script>
-                alert("<%= successMessage%>");
-            </script>
-            <%
-                }
-            %>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
     </body>
 </html>

@@ -8,6 +8,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="css/category.css" rel="stylesheet" type="text/css"/>
         <title>Dashboard</title>
         <!-- Mettez ici vos liens CSS, scripts JS, etc. -->
@@ -20,13 +21,18 @@
         </script>
     </head>
     <body>
-        <nav>
-            <ul>
-                <li><a href="DashboardServlet">Dashbard</a></li>
-                <li><a href="CategoryServlet">Categories</a></li>
-                <li><a href="ProductServlet">Products</a></li>
-                <li><a class="logout" href="LogoutServlet" onclick="confirmLogout()">Log out</a></li>
-            </ul>
+        <nav data-mdb-navbar-init class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <nav aria-label="breadcrumb">
+                    <ul >
+                        <li ><a href="DashboardServlet">Dashbard</a></li>
+                        <li><a href="CategoryServlet">Categories</a></li>
+                        <li><a href="ProductServlet">Products</a></li>
+                        <li><a class="logout" href="LogoutServlet" onclick="confirmLogout()">Log out</a></li>
+                    </ul>
+                </nav>
+            </div>
+
         </nav>
 
         <div>
@@ -65,6 +71,6 @@
                 <% }%>
             </div>
 
-            <!-- Mettez ici d'autres éléments HTML pour afficher les statistiques de votre tableau de bord -->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
