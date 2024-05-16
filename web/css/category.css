@@ -1,9 +1,258 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
-*/
-/* 
-    Created on : 16 mai 2024, 14:51:56
-    Author     : utilisateur
-*/
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700');
 
+body {
+  background-color: black;
+    padding: 24px;
+    font-family: 'Source Sans Pro', sans-serif;
+    margin: 0;
+    ustify-content: center;
+     align-items: center;
+    height: 100vh;
+    background-size: 40px 40px;
+    
+}
+
+
+
+form {
+    margin-bottom: 20px;
+}
+
+form label {
+    font-weight: bold;
+}
+table {
+    font-weight: bold;
+    background-color:#e5e7e6;
+    width: 100%;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-row {
+    display: flex;
+}
+
+.form-column {
+    margin: 0 10px; /* Espacement entre les colonnes */
+}
+
+.table {
+    width: 100%;
+    border: 1px solid #EEEEEE;
+}
+
+.table-header {
+    display: flex;
+    width: 100%;
+    background: #000;
+    padding: 12px 0; /* Calculated from 24px base-spacing-unit */
+}
+
+.table-row {
+    display: flex;
+    width: 100%;
+    padding: 12px 0; /* Calculated from 24px base-spacing-unit */
+    &:nth-of-type(odd) {
+        background: #EEEEEE;
+    }
+}
+
+.table-data, .header__item {
+    flex: 1 1 20%;
+    text-align: center;
+}
+
+.header__item {
+    text-transform: uppercase;
+}
+
+.filter__link {
+    color: white;
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+    padding-left: 24px; /* Using actual value instead of variable */
+    padding-right: 24px; /* Using actual value instead of variable */
+}
+
+.filter__link::after {
+    content: '';
+    position: absolute;
+    right: -36px; /* Calculated from 18px half-spacing-unit */
+    color: white;
+    font-size: 12px; /* Calculated from 24px base-spacing-unit */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.filter__link.desc::after {
+    content: '(desc)';
+}
+
+.filter__link.asc::after {
+    content: '(asc)';
+}
+input[type="submit"], input[type="button"], button {
+    background-color: #ff6699;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 10px;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover, input[type="button"]:hover, button:hover {
+    background-color: #ff6699;
+}
+th, td {
+    padding: 7px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+/* Style pour les titres */
+h2 {
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+thead{
+	text-align: center;
+	font-size: 25px;
+	color: #000;
+	margin-top: 20px;
+}
+
+nav {
+    background-color: #ff6699; /* Couleur de fond de la barre de navigation */
+    margin-bottom: 20px;
+}
+nav   a{
+float: left;    /* effet flottant */
+text-decoration: none; /* pas d'héritage avec effet souligné */
+color: #ff6699; /* couleur du texte */
+height: 36px; /* hauteur */
+line-height: 33px;  /* interligne */
+padding: 0 10px; /* marges intérieur */
+font-family: sans-serif; /* police d'écriture */
+font-size: 13px; /* taille du texte */
+
+}
+
+/* Styles pour la barre de navigation */
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 20px; /* Espace entre les éléments de la barre de navigation */
+    
+}
+
+nav ul li:last-child {
+    margin-right: 0; /* Supprime l'espace à droite du dernier élément */
+}
+nav ul li a.logout {
+    position: absolute;
+    right: 5%;
+    color:white;
+    
+   
+}
+
+
+nav ul li a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: #ff6699;
+}
+
+nav ul li a.logout {
+     margin-left: auto;  /* Place l'élément à droite */
+}
+.panel-container {
+    display: flex;
+    justify-content: space-between; /* Pour espacer les panneaux et les aligner sur les extrémités */
+    margin-top: 20px; /* Ajoute de l'espace au-dessus des panneaux */
+}
+
+.panel {
+    flex: 1;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 20px; /* Ajoute de l'espace entre les panneaux */
+}
+
+.panel:last-child {
+    margin-right: 0; /* Supprime la marge à droite du dernier panneau */
+}
+
+.panel-header {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.panel-body {
+    padding: 10px;
+}
+
+label{
+     color: white;
+     
+}
+.panel-body{
+      color: white;
+}
+.chart {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    height: 250px; /* Adjust height as needed */
+    color: whitesmoke;
+}
+
+.y-axis {
+    width: 100px; /* Adjust width for y-axis labels */
+    padding-right: 10px; /* Add some space between bars and labels */
+    text-align: right;
+}
+
+.bars {
+    flex-grow: 1; /* Make bars fill remaining space */
+}
+
+.bar {
+    width: 20px; /* Width of each bar */
+    background-color: #ff6699; /* Color of the bars */
+    margin-right: 2px; /* Spacing between bars */
+}
+
+.label {
+    margin-bottom: px; /* Spacing between labels */
+}
+.quantity-label {
+    margin-top: 5px; /* Ajustez l'espacement entre la barre et l'étiquette de quantité */
+    font-size: 12px; /* Ajustez la taille de police au besoin */
+    color: white;
+}
