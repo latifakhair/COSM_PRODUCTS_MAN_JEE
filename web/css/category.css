@@ -256,3 +256,10 @@ label{
     font-size: 12px; /* Ajustez la taille de police au besoin */
     color: white;
 }
+.title {
+    text-align: center;
+    margin-top: 20px; /* Adjust as needed */
+    margin-bottom: 10px; /* Adjust as needed */
+    font-style: italic;
+    color: white;
+}
