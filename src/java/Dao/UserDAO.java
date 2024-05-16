@@ -11,5 +11,9 @@ import Model.User;
  * @author utilisateur
  */
 public interface UserDAO {
+
     boolean validateUser(User user);
+
+    boolean registerUser(User user);
+
 }

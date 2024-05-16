@@ -13,20 +13,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserDAOImp implements UserDAO {
-    
-   private Connection getConnection() {
+
+    private Connection getConnection() {
         Connection connection = ConnectionFactory.getConnection();
         if (connection == null) {
             throw new IllegalStateException("Failed to connect to the database");
         }
         return connection;
     }
-    
+
     @Override
     public boolean validateUser(User user) {
         String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
-        try (Connection conn = ConnectionFactory.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try (Connection conn = ConnectionFactory.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, user.getUsername());
             pstmt.setString(2, user.getPassword());
             try (ResultSet rs = pstmt.executeQuery()) {
@@ -37,5 +36,20 @@ public class UserDAOImp implements UserDAO {
             return false;
         }
     }
-    
+
+    @Override
+    public boolean registerUser(User user) {
+        String sql = "INSERT INTO users (username, password, email) VALUES (?, ?, ?)";
+        try (Connection conn = getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, user.getUsername());
+            pstmt.setString(2, user.getPassword());
+            pstmt.setString(3, user.getEmail());
+            int rowsInserted = pstmt.executeUpdate();
+            return rowsInserted > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }
