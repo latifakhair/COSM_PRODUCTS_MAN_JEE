@@ -4,10 +4,12 @@
  */
 package Dao;
 
+import Model.User;
+
 /**
  *
  * @author utilisateur
  */
-public class UserDAO {
-    
+public interface UserDAO {
+    boolean validateUser(User user);
 }

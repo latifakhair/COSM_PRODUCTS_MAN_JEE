@@ -4,10 +4,16 @@
  */
 package Dao;
 
+import Model.Product;
+import java.util.List;
+
 /**
  *
- * @author utilisateur
+ * @author dell
  */
-public class DashboardDAO {
-    
+
+public interface DashboardDAO {
+    int getTotalProducts();
+    int getTotalCategories();
+    public List<Product> getAllProducts();
 }
