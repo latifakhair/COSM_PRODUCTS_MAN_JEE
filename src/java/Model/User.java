@@ -9,8 +9,11 @@ package Model;
  * @author utilisateur
  */
 public class User {
+
+    private int id;
     private String username;
     private String password;
+    private String email;
 
     public User() {
     }
@@ -18,6 +21,30 @@ public class User {
     public User(String username, String password) {
         this.username = username;
         this.password = password;
+    }
+
+    public User(String username, String password, String email) {
+
+        this.password = password;
+        this.username = username;
+        this.email = email;
+    }
+// Getters and setters
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getUsername() {
