@@ -9,5 +9,30 @@ package Model;
  * @author utilisateur
  */
 public class Category {
+    private int catCode;
+    private String catName;
+
+    public Category() {
+        // Initialize any default values if needed
+    }
+    public Category(String catName) {
+        this.catName = catName;
+    }
     
+
+    public int getCatCode() {
+        return catCode;
+    }
+
+    public void setCatCode(int catCode) {
+        this.catCode = catCode;
+    }
+
+    public String getCatName() {
+        return catName;
+    }
+
+    public void setCatName(String catName) {
+        this.catName = catName;
+    }
 }
