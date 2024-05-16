@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "CategoryServlet", urlPatterns = {"/CategoryServlet"})
 public class CategoryServlet extends HttpServlet {
-    
+
     private final CategoryDAO categoryDAO = new CategoryDAOImp();
 
     @Override
@@ -32,45 +32,66 @@ public class CategoryServlet extends HttpServlet {
             listCategories(request, response);
         }
     }
+
     private void addCategory(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
-    String catName = request.getParameter("catName");
-    Category category = new Category(catName);
-    categoryDAO.add(category);
-    listCategories(request, response); // Redirect back to the category list after adding
-}
-@Override
-protected void doPost(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
-    String action = request.getParameter("action");
-    if ("add".equals(action)) {
-        addCategory(request, response);
-    } else if ("update".equals(action)) {
-        updateCategory(request, response);
-    } else if ("delete".equals(action)) {
-        deleteCategory(request, response);
-    } else {
-        listCategories(request, response);
+            throws ServletException, IOException {
+        String catName = request.getParameter("catName");
+        Category category = new Category(catName);
+        categoryDAO.add(category);
+
+        // Set success message attribute
+        request.setAttribute("success", "Category added successfully");
+        listCategories(request, response); // Redirect back to the category list after adding
+
+        // Forward the request to the JSP page
+        request.getRequestDispatcher("/category.jsp").forward(request, response);
+        // Redirect back to the product list after adding
     }
-}
 
-private void deleteCategory(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
-    int catCode = Integer.parseInt(request.getParameter("catCode"));
-    categoryDAO.delete(catCode);
-    listCategories(request, response); // Redirect back to the category list after deletion
-}
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String action = request.getParameter("action");
+        if ("add".equals(action)) {
+            addCategory(request, response);
+        } else if ("update".equals(action)) {
+            updateCategory(request, response);
+        } else if ("delete".equals(action)) {
+            deleteCategory(request, response);
+        } else {
+            listCategories(request, response);
+        }
+    }
 
-private void updateCategory(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
-    int catCode = Integer.parseInt(request.getParameter("catCode"));
-    String catName = request.getParameter("catName");
-    Category category = new Category();
-    category.setCatCode(catCode); // Set the existing catCode
-    category.setCatName(catName); // Set the new catName
-    categoryDAO.update(category);
-    listCategories(request, response); // Redirect back to the category list after updating
-}
+    private void deleteCategory(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        int catCode = Integer.parseInt(request.getParameter("catCode"));
+        categoryDAO.delete(catCode);
+        // Set success message attribute
+        request.setAttribute("success", "Category deleted successfully");
+        listCategories(request, response); // Redirect back to the category list after adding
+
+        // Forward the request to the JSP page
+        request.getRequestDispatcher("/category.jsp").forward(request, response);
+        // Redirect back to the product list after adding
+    }
+
+    private void updateCategory(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        int catCode = Integer.parseInt(request.getParameter("catCode"));
+        String catName = request.getParameter("catName");
+        Category category = new Category();
+        category.setCatCode(catCode); // Set the existing catCode
+        category.setCatName(catName); // Set the new catName
+        categoryDAO.update(category);
+        request.setAttribute("success", "Category deleted successfully");
+        listCategories(request, response); // Redirect back to the category list after adding
+
+        // Forward the request to the JSP page
+        request.getRequestDispatcher("/category.jsp").forward(request, response);
+        // Redirect back to the product list after adding
+    }
+
     private void listCategories(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         List<Category> categories = categoryDAO.getAllCategories();

@@ -3,7 +3,20 @@
     Created on : 14 mai 2024, 16:50:39
     Author     : utilisateur
 --%>
+<!-- Add a message div to display success messages -->
+<div id="message" style="display:none;"></div>
 
+<!-- Add JavaScript function to show messages -->
+<script>
+    function showMessage(message) {
+        var messageDiv = document.getElementById("message");
+        messageDiv.innerHTML = message;
+        messageDiv.style.display = "block";
+        setTimeout(function () {
+            messageDiv.style.display = "none";
+        }, 3000); // Hide the message after 3 seconds
+    }
+</script>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -29,6 +42,8 @@
             </ul>
         </nav>
         <div class="container">
+            <!-- Add a message div to display success messages -->
+            <div id="message" style="display:none;"></div>
             <div class="form-row">
                 <div class="form-column">
                     <h3 class="title" style="font-style: italic;">Add New Product</h3>
@@ -118,6 +133,19 @@
                 </table>
             </div>
         </div>
+
+        <%-- JSP code to check if success attribute is set and display success message --%>
+        <%
+            String successMessage = (String) request.getAttribute("success");
+            if (successMessage != null) {
+        %>
+        <script>
+            alert("<%= successMessage%>");
+        </script>
+        <%
+            }
+        %>
+
     </body>
 </html>
 

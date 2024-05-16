@@ -85,9 +85,13 @@ public class ProductServlet extends HttpServlet {
 
         // Call the add method of ProductDAO to add the product to the database
         productDAO.add(product);
-
-        // Redirect back to the product list after adding
+        // Set success message attribute
+        request.setAttribute("success", "Product added successfully");
         listProducts(request, response);
+        // Forward the request to the JSP page
+        request.getRequestDispatcher("/product.jsp").forward(request, response);
+        // Redirect back to the product list after adding
+
     }
 
     private void updateProduct(HttpServletRequest request, HttpServletResponse response)
@@ -109,6 +113,12 @@ public class ProductServlet extends HttpServlet {
         Product updatedProduct = new Product(itCode, itName, quantity, date, price, category);
         productDAO.update(updatedProduct);
 
+        // Set success message attribute
+        request.setAttribute("success", "Product updated successfully");
+        listProducts(request, response);
+        // Forward the request to the JSP page
+        request.getRequestDispatcher("/product.jsp").forward(request, response);
+
         response.sendRedirect(request.getContextPath() + "/ProductServlet");
     }
 
@@ -118,6 +128,13 @@ public class ProductServlet extends HttpServlet {
         int productId = Integer.parseInt(request.getParameter("itCode"));
         // Call the delete method of ProductDAO to delete the product from the database
         productDAO.delete(productId);
+
+        // Set success message attribute
+        request.setAttribute("success", "Product deleted successfully");
+        listProducts(request, response);
+        // Forward the request to the JSP page
+        request.getRequestDispatcher("/product.jsp").forward(request, response);
+        // Redirect back to the product list after adding
         // Redirect back to the product list after deletion
         response.sendRedirect(request.getContextPath() + "/ProductServlet");
     }
@@ -142,7 +159,14 @@ public class ProductServlet extends HttpServlet {
     private void searchProducts(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String keyword = request.getParameter("keyword");
         List<Product> products = productDAO.searchProducts(keyword);
+        Map<Integer, String> categoryMap = new HashMap<>();
+        for (Product product : products) {
+            int categoryId = product.getCategory();
+            String categoryName = productDAO.getCategoryName(categoryId);
+            categoryMap.put(categoryId, categoryName);
+        }
         request.setAttribute("products", products);
+        request.setAttribute("categoryMap", categoryMap);
         request.getRequestDispatcher("/product.jsp").forward(request, response);
     }
 }
