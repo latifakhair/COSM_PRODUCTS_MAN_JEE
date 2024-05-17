@@ -22,6 +22,7 @@
                                 <div class="signin">
                                     <div class="content">
                                         <div class="form">
+                                            <label style="font-size: 30px;font-style: italic">LOGIN</label><br><br>
                                             <div class="inputBox">
                                                 <label for="username">Username:</label><br>
                                                 <input type="text" id="username" name="username"><br>
